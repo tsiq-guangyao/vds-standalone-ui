@@ -1,0 +1,239 @@
+{
+    "vendorRequest": {
+      "title": "Vendor Input Form",
+      "type": "object",
+      "properties": {
+        "address": {
+          "title": "Name and Legal Address Query",
+          "$ref": "#/definitions/address",
+          "description": ""
+        },
+        "locations": {
+          "title": "Locations Query",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/address"
+          }
+        },
+        "structures": {
+          "title": "Structures Query",
+          "type": "object",
+          "properties": {
+            "location": {
+              "title": "Location",
+              "$ref": "#/definitions/address"
+            },
+            "structures": {
+              "text": "Structures",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/locationStructureDetail"
+              }
+            }
+          }
+        },
+        "vehicles": {
+          "title": "Vehicles",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "title": "VIM"
+          }
+        },
+        "drivers": {
+          "title": "Drivers",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/driver"
+          }
+        }
+      },
+      "definitions": {
+        "address": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "title": "Name",
+              "type": "string"
+            },
+            "street": {
+              "title": "Street",
+              "type": "string"
+            },
+            "city": {
+              "title": "City",
+              "type": "string"
+            },
+            "state": {
+              "title": "State",
+              "type": "string"
+            },
+            "zip": {
+              "title": "Zip",
+              "type": "string"
+            }
+          }
+        },
+        "locationStructureDetail": {
+          "type": "object",
+          "properties": {
+            "structureId": {
+              "title": "Structure Id",
+              "type": "string"
+            },
+            "hasLimit": {
+              "title": "Has limit",
+              "type": "boolean"
+            },
+            "requiresEstimatedLossCost": {
+              "title": "Requires Estimated Loss Cost",
+              "type": "boolean"
+            },
+            "constructionTypeToUse": {
+              "title": "Construction Type to Use",
+              "type": "string",
+              "enum": [
+                "FRAME",
+                "JOISTED_MASONRY",
+                "NON_COMBUSTIBLE",
+                "MASONRY_NON_COMBUSTIBLE",
+                "MODIFIED_FIRE_RESISTIVE",
+                "FIRE_RESISTIVE"
+              ]
+            },
+            "occupancyCode": {
+              "title": "Occupancy Code",
+              "type": "string"
+            },
+            "sprinklered": {
+              "title": "Sprinkle Red",
+              "type": "boolean"
+            },
+            "asgr": {
+              "title": "Asgr",
+              "type": "integer"
+            },
+            "stories": {
+              "title": "Stories",
+              "type": "integer"
+            },
+            "totalSquareFootage": {
+              "title": "Total Sqr Footage",
+              "type": "integer"
+            },
+            "percentOccupiedBy": {
+              "title": "Percent Occupied By",
+              "type": "object",
+              "properties": {
+                "insured": {
+                  "title": "Insured",
+                  "type": "integer"
+                },
+                "apartments": {
+                  "title": "Apartments",
+                  "type": "integer"
+                },
+                "offices": {
+                  "title": "Offices",
+                  "type": "integer"
+                },
+                "restaurants": {
+                  "title": "Restaurants",
+                  "type": "integer"
+                },
+                "retailSales": {
+                  "title": "Retail Sales",
+                  "type": "integer"
+                },
+                "serviceOccupancies": {
+                  "title": "Service Occupancies",
+                  "type": "integer"
+                },
+                "manufacturing": {
+                  "title": "Manufacturing",
+                  "type": "integer"
+                }
+              }
+            },
+            "windUplift": {
+              "title": "Wind Up lift",
+              "type": "boolean"
+            },
+            "yearBuilt": {
+              "title": "Year Built",
+              "type": "integer"
+            },
+            "proMetrixRiskId": {
+              "title": "ProMetrix Risk Id",
+              "type": "string"
+            },
+            "occupancy": {
+              "title": "Occupancy",
+              "type": "object",
+              "properties": {
+                "useType": {
+                  "title": "Use Type",
+                  "type": "string"
+                },
+                "occupancyType": {
+                  "title": "Occupancy Type",
+                  "type": "string"
+                },
+                "supportingWallsType": {
+                  "title": "Supporting Walls Type",
+                  "type": "string"
+                },
+                "supportingWallsValue": {
+                  "title": "Supporting Walls Value",
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "driver": {
+          "type": "object",
+          "properties": {
+            "licenseDetails": {
+              "title": "License Details",
+              "type": "object",
+              "properties": {
+                "issuingState": {
+                  "title": "Issuing State",
+                  "type": "string"
+                },
+                "licenseNumber": {
+                  "title": "License Number",
+                  "type": "string"
+                }
+              }
+            },
+            "firstName": {
+              "title": "First Name",
+              "type": "string"
+            },
+            "middleName": {
+              "title": "Middle Name",
+              "type": "string"
+            },
+            "lastName": {
+              "title": "Last Name",
+              "type": "string"
+            },
+            "dateOfBirth": {
+              "title": "Date of Birth",
+              "type": "string",
+              "format": "date"
+            }
+          }
+        }
+      }
+    },
+    "vendorResponse": {
+      "address": "address",
+      "locations": "locations",
+      "structures": "structures",
+      "vehicles": "vehicles",
+      "drivers": "drivers"
+    }
+  }
