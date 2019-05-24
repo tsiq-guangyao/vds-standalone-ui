@@ -12,39 +12,7 @@ export default class App extends React.Component {
     if (this.state.vendorData) {
       contents.push((<h3 > Name and Legal Address Query </h3>))
       for (let vendor in this.state.vendorData) {
-        contents.push(
-          <div className="form-group field field-string">
-            <legend> { vendor } </legend>
-          </div>)
-        if (this.state.vendorData[vendor] === null) {
-          continue
-        }
-        let vendorData = JSON.parse(this.state.vendorData[vendor])
-        for (let dataName in vendorData) {
-          let data = vendorData[dataName]
-          console.log("typeof " + (typeof dataName) + dataName)
-          if (typeof data === 'object' && data !== null) {
-            contents.push(
-              <div className="form-group field field-string">
-                <h5 className="control-label"> {dataName}: </h5>
-                <ul class="list-group">
-                {
-                  Object.keys(data).map(function(d, i){
-                    return (
-                      <li className="list-group-item" key={i}> {d}: <span class="label label-default">{data[d] !== null ? data[d]: "N/A"} </span></li>
-                    )
-                  })
-                }
-                </ul>
-              </div>)
-          }
-          else {
-            contents.push(
-              <div className="form-group field field-string">
-                <h5 className="control-label"> {dataName}: <span class="label label-default"> {data !== null ? data: "N/A"} </span></h5>
-              </div>)
-          }
-        }
+        this.populateVendorData.call(this, contents, vendor, this.state.vendorData[vendor])
       }
     }
     return (
@@ -59,7 +27,6 @@ export default class App extends React.Component {
         </div>        
         <div className={'col-sm-5'}>
             <div> {contents} </div>
-            {/* <div>{JSON.stringify(this.state.vendorData)} </div> */}
         </div>
         <div className={'col-sm-1'}></div>
       </div>
@@ -83,5 +50,60 @@ export default class App extends React.Component {
       .then(body => {
         that.setState({vendorData: body})
       })
+  }
+
+  populateVendorData(contents, vendorName, val) {
+    contents.push(
+      <div className="form-group field field-string">
+        <legend> { vendorName } </legend>
+      </div>)
+    if (val === null) {
+      return
+    }
+    let vendorData = JSON.parse(val)
+    for (let dataName in vendorData) {
+      contents.push(populateDataField(dataName, vendorData[dataName]))
+    }
+  }
+}
+
+function populateDataField(dataName, data) {
+  if (Array.isArray(data)) {
+    console.log(data)
+    return (
+      <div className="form-group field field-string">
+        <h5 className="control-label"> {dataName}: </h5>
+        <ul class="list-group">
+        {
+          data.map(function(d, i){
+            return (
+              <li className="list-group-item" key={i}> index{i+1} {populateDataField(i, d)} </li>
+            )
+          })
+        }
+        </ul>
+      </div>)
+  }
+  else if (typeof data === 'object' && data !== null) {
+    console.log(data)
+    return(
+      <div className="form-group field field-string">
+        <h5 className="control-label"> {dataName}: </h5>
+        <ul className="list-group">
+        {
+          Object.keys(data).map(function(d, i){
+            return (
+              <li className="list-group-item" key={i}> {populateDataField(d, data[d])} </li>
+            )
+          })
+        }
+        </ul>
+      </div>)
+  }
+  else {
+    return(
+      <div className="form-group field field-string">
+        <h5 className="control-label"> {dataName}: <span className="label label-default"> {data !== null ? data: "N/A"} </span></h5>
+      </div>)
   }
 }
