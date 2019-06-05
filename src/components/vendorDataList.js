@@ -20,10 +20,9 @@ export default class VendorDataList extends React.Component {
             const queryDatum = queryData[queryName]
             if (Array.isArray(queryDatum)) {
                 return (<div className={"form-group"}>
-                  <legend>{queryName}</legend>
                     {queryDatum.map((data, i) => {
                       return (<div>
-                          <h5>Query: {i}</h5>
+                          <legend>{queryName} #{i}</legend>
                           {
                             Object.keys(data).map((name, _) => { 
                               return <VendorData data={data[name]} name={name}/>
