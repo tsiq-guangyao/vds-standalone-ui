@@ -15,7 +15,7 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
-        <div className={'col-sm-1'}/>    
+        <div className={'col-sm-1'}/>
         <div className={'col-sm-3'}>
             <Form schema={this.props.schema.vendorRequest}
                 onChange={log("changed")}
@@ -25,7 +25,7 @@ export default class App extends React.Component {
         <div className={'col-sm-4'} >
           <VendorSchemaList vendors={this.props.schema.vendors} vendorResponseSchema={this.props.schema.vendorResponseSchema}/>
         </div>
-        <div className={'col-sm-4'}>
+        <div className={'col-sm-3'}>
           <VendorDataList data={this.state.vendorData}/>
         </div>
         <div className={'col-sm-1'}/>

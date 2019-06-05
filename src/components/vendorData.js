@@ -9,55 +9,58 @@ export default class VendorData extends React.Component {
     let data = this.props.data
     let name = this.props.name
     let status = data.status
-    let message = data.message
-    let resData = data.data
-    console.error(this.props.data)
+    let messages = data.messages
+    let vendorData = data.data
+    let backgroundWarning = (status === 'AVAILABLE' ? 'bg-success' : 'bg-danger')
     return (
       <div>
-        <h5>{name}</h5>
-        <span className='row border border-secondary'>
-          <div>{populateDataField('data', this.props.data)}</div>
-        </span>
+        <div className={'row ' + backgroundWarning}>
+          <h5 className={'col-sm-7'} >{name}</h5>
+          <h5 className={'col-sm-4'} >{status}</h5>
+        </div>
+        <div>{populateMessages(messages)}</div>
+        <table className='table'><tbody>{vendorData && populateDataField(null, vendorData)}</tbody></table>
       </div>
     )
   }
 }
-
+function populateMessages(messages) {
+  if (!messages) {
+    return
+  }
+  return (
+    <ul>
+      {
+        messages.map((message, i) => 
+          (<li key={i}> {message} </li>))
+      }
+    </ul>
+  )
+}
 function populateDataField(dataName, data) {
-  if (!data) {
+  if (data == null) {
     return
   }
 
   if (Array.isArray(data)) {
     return (
-      <div className="form-group">
-        <ul className="list-group">
-        {
-          data.map(function(d, i){
-            return (
-              <li className="list-group-item" style={{border: 'none'}} key={i}> {populateDataField(i, d)} </li>
-            )
-          })
-        }
-        </ul>
-      </div>)
+      <tr>
+        {dataName && <td> {dataName}: </td>}
+        <table className='table' style={{marginBottom: 0}}><tbody>
+          { data.map((d, i) => populateDataField(null, d)) }
+        </tbody></table>
+      </tr>)
   }
   else if (typeof data === 'object' && data !== null) {
     return(
-      <div className="form-group">
-        <div> {dataName}: </div>
-        <ul className="list-group" style={{marginBottom: '0px'}}>
-        {
-          Object.keys(data).map(function(d, i){
-            return (
-              <li className="list-group-item" style={{border: 'none', padding: '0px 15px'}} key={i}> {populateDataField(d, data[d])} </li>
-            )
-          })
-        }
-        </ul>
-      </div>)
+      <tr>
+        {dataName && <td> {dataName}: </td>}
+        <table className='table' style={{marginBottom: 0}}><tbody>
+          {Object.keys(data).map(d => populateDataField(d, data[d]))}
+        </tbody></table>
+      </tr>)
   }
-  return(<div> {dataName}: <span className="label label-default"> {data !== null ? data: "N/A"} </span></div>)
+return(<tr> {dataName && <td>{dataName}: </td>} <td><label>{data !== null && data !== "" ? data.toString(): "N/A"}</label></td></tr>)
 }
 // Specifies the default values for props:
 VendorData.defaultProps = {
