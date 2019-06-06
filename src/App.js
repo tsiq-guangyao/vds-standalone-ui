@@ -18,6 +18,7 @@ export default class App extends React.Component {
         <div className={'col-sm-1'}/>
         <div className={'col-sm-3'}>
             <Form schema={this.props.schema.vendorRequest}
+                formData={{locationsAndStructures:[{}], vehicles: [""], drivers:[{}]}}
                 onChange={log("changed")}
                 onSubmit={this.submit.bind(this)}
                 onError={log("errors")} />
@@ -26,7 +27,7 @@ export default class App extends React.Component {
           <VendorSchemaList vendors={this.props.schema.vendors} vendorResponseSchema={this.props.schema.vendorResponseSchema}/>
         </div>
         <div className={'col-sm-3'}>
-          <VendorDataList data={this.state.vendorData}/>
+          <VendorDataList vendorData={this.state.vendorData}/>
         </div>
         <div className={'col-sm-1'}/>
       </div>
@@ -48,6 +49,7 @@ export default class App extends React.Component {
           return res.json()
       })
       .then(body => {
+        console.error('get body ', body)
         that.setState({vendorData: body})
       })
   }

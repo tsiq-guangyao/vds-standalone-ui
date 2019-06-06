@@ -46,21 +46,29 @@ function populateDataField(dataName, data) {
     return (
       <tr>
         {dataName && <td> {dataName}: </td>}
-        <table className='table' style={{marginBottom: 0}}><tbody>
-          { data.map((d, i) => populateDataField(null, d)) }
-        </tbody></table>
+        <td>
+          <table className='table' style={{marginBottom: 0}}>
+            <tbody>
+              {data.map((d, i) => populateDataField(null, d))}
+            </tbody>
+          </table>
+        </td>
       </tr>)
   }
   else if (typeof data === 'object' && data !== null) {
     return(
       <tr>
         {dataName && <td> {dataName}: </td>}
-        <table className='table' style={{marginBottom: 0}}><tbody>
-          {Object.keys(data).map(d => populateDataField(d, data[d]))}
-        </tbody></table>
+        <td>
+          <table className='table' style={{marginBottom: 0}}>
+            <tbody>
+              {Object.keys(data).map(d => populateDataField(d, data[d]))}
+            </tbody>
+          </table>
+        </td>
       </tr>)
   }
-return(<tr> {dataName && <td>{dataName}: </td>} <td><label>{data !== null && data !== "" ? data.toString(): "N/A"}</label></td></tr>)
+return(<tr>{dataName && <td>{dataName}:</td>}<td><label>{data !== null && data !== "" ? data.toString(): "N/A"}</label></td></tr>)
 }
 // Specifies the default values for props:
 VendorData.defaultProps = {

@@ -4,20 +4,18 @@ import VendorData from './vendorData';
 export default class VendorDataList extends React.Component {
   constructor(props) {
       super(props)
-      this.state = {
-        vendors: []
-      }
+      this.state = {}
   }
 
   render() {
-    // const queryData = this.props.queryData
-    const queryData = {"address":{"cpsc":{"data":{"numViolations":0},"messages":["test1", "test2"],"status":"VENDOR_FAILURE"},"experian":{"data":{"intelliscorePlusScore":{"hadRecentBankruptcy":false,"value":27},"intelliscorePlusV2RiskClass":3,"intelliscorePlusV2Score":{"hadRecentBankruptcy":false,"value":28},"numDerogatoryLegalItems":0,"numEmployees":null,"numJudgments":0,"numLiens":0,"numYearsInFile":34,"primaryNaicsCode":null},"messages":null,"status":"AVAILABLE"},"fdaEnforcement":{"data":{"numEnforcements":0},"messages":null,"status":"AVAILABLE"}},"drivers":[],"locations":[{"hazardHub":{"data":{"crime":{"score":"C","text":"Average crime rate"},"elevationInFeet":9.09,"femaAllFloodParams":{"floodZone":"X","zoneSubtype":"0.2 PCT ANNUAL CHANCE FLOOD HAZARD"},"femaFirmDate":{"currentClass":"N/A"},"fireProtection":{"score":"A","text":"Within Municipality & < 1 Drive Miles from Fire Station"},"fireStationDriveDistanceInMiles":0.32,"fireStationType":"FULL_TIME","hazardhubFlood":{"score":"F","text":"Very High risk of damage from freshwater stream/river flooding. Check SurgeMax Score."},"ifBasementYn":null,"mineSubsidence":{"score":null,"text":""},"surgeMax":{"score":"F","text":"In SurgeMax Zone"},"wildfireDescription":"High_Dens_NoVeg","wildfireDistanceToHighAreaInFeet":null,"wildfireRisk":"VERY_LOW","wildfireRiskScore":1},"messages":null,"status":"AVAILABLE"},"osha":{"data":{"numViolations":0},"messages":null,"status":"AVAILABLE"},"proMetrixLocation":{"data":{"risks":[{"address":{"city":"MANHATTAN","state":"NY","street":"101 AVENUE OF THE AMERICAS","zip":"10013"},"buildingDescription":"101_LIMITED_PARTNERS(23S)","occupantNames":["GENERAL BUSINESS OFFICE (NOC)","DISTRICT CONUNCIL 1707 LOCAL 389"],"riskId":"31NY99055110"}]},"messages":null,"status":"AVAILABLE"},"smrCommercial":{"data":null,"messages":null,"status":"AVAILABLE"}},{"hazardHub":{"data":{"crime":{"score":"C","text":"Average crime rate"},"elevationInFeet":79.72,"femaAllFloodParams":{"floodZone":"X","zoneSubtype":"AREA OF MINIMAL FLOOD HAZARD"},"femaFirmDate":{"currentClass":"N/A"},"fireProtection":{"score":"A","text":"Within Municipality & < 1 Drive Miles from Fire Station"},"fireStationDriveDistanceInMiles":0.51,"fireStationType":"FULL_TIME","hazardhubFlood":{"score":"A","text":"Extremely Low risk of damage from stream/river flooding."},"ifBasementYn":null,"mineSubsidence":{"score":null,"text":""},"surgeMax":{"score":null,"text":"Not In SurgeMax Zone"},"wildfireDescription":"High_Dens_NoVeg","wildfireDistanceToHighAreaInFeet":null,"wildfireRisk":"VERY_LOW","wildfireRiskScore":1},"messages":null,"status":"AVAILABLE"},"osha":{"data":{"numViolations":0},"messages":null,"status":"AVAILABLE"},"proMetrixLocation":{"data":{"risks":[]},"messages":null,"status":"AVAILABLE"},"smrCommercial":{"data":null,"messages":null,"status":"AVAILABLE"}}],"vehicles":[]}
-    // console.error('query', JSON.stringify(queryData))
+    const vendorData = this.props.vendorData
+    // const vendorData = {"address":{"cpsc":{"data":{"numViolations":0},"messages":["test1", "test2"],"status":"VENDOR_FAILURE"},"experian":{"data":{"intelliscorePlusScore":{"hadRecentBankruptcy":false,"value":27},"intelliscorePlusV2RiskClass":3,"intelliscorePlusV2Score":{"hadRecentBankruptcy":false,"value":28},"numDerogatoryLegalItems":0,"numEmployees":null,"numJudgments":0,"numLiens":0,"numYearsInFile":34,"primaryNaicsCode":null},"messages":null,"status":"AVAILABLE"},"fdaEnforcement":{"data":{"numEnforcements":0},"messages":null,"status":"AVAILABLE"}},"drivers":[],"locations":[{"hazardHub":{"data":{"crime":{"score":"C","text":"Average crime rate"},"elevationInFeet":9.09,"femaAllFloodParams":{"floodZone":"X","zoneSubtype":"0.2 PCT ANNUAL CHANCE FLOOD HAZARD"},"femaFirmDate":{"currentClass":"N/A"},"fireProtection":{"score":"A","text":"Within Municipality & < 1 Drive Miles from Fire Station"},"fireStationDriveDistanceInMiles":0.32,"fireStationType":"FULL_TIME","hazardhubFlood":{"score":"F","text":"Very High risk of damage from freshwater stream/river flooding. Check SurgeMax Score."},"ifBasementYn":null,"mineSubsidence":{"score":null,"text":""},"surgeMax":{"score":"F","text":"In SurgeMax Zone"},"wildfireDescription":"High_Dens_NoVeg","wildfireDistanceToHighAreaInFeet":null,"wildfireRisk":"VERY_LOW","wildfireRiskScore":1},"messages":null,"status":"AVAILABLE"},"osha":{"data":{"numViolations":0},"messages":null,"status":"AVAILABLE"},"proMetrixLocation":{"data":{"risks":[{"address":{"city":"MANHATTAN","state":"NY","street":"101 AVENUE OF THE AMERICAS","zip":"10013"},"buildingDescription":"101_LIMITED_PARTNERS(23S)","occupantNames":["GENERAL BUSINESS OFFICE (NOC)","DISTRICT CONUNCIL 1707 LOCAL 389"],"riskId":"31NY99055110"}]},"messages":null,"status":"AVAILABLE"},"smrCommercial":{"data":null,"messages":null,"status":"AVAILABLE"}},{"hazardHub":{"data":{"crime":{"score":"C","text":"Average crime rate"},"elevationInFeet":79.72,"femaAllFloodParams":{"floodZone":"X","zoneSubtype":"AREA OF MINIMAL FLOOD HAZARD"},"femaFirmDate":{"currentClass":"N/A"},"fireProtection":{"score":"A","text":"Within Municipality & < 1 Drive Miles from Fire Station"},"fireStationDriveDistanceInMiles":0.51,"fireStationType":"FULL_TIME","hazardhubFlood":{"score":"A","text":"Extremely Low risk of damage from stream/river flooding."},"ifBasementYn":null,"mineSubsidence":{"score":null,"text":""},"surgeMax":{"score":null,"text":"Not In SurgeMax Zone"},"wildfireDescription":"High_Dens_NoVeg","wildfireDistanceToHighAreaInFeet":null,"wildfireRisk":"VERY_LOW","wildfireRiskScore":1},"messages":null,"status":"AVAILABLE"},"osha":{"data":{"numViolations":0},"messages":null,"status":"AVAILABLE"},"proMetrixLocation":{"data":{"risks":[]},"messages":null,"status":"AVAILABLE"},"smrCommercial":{"data":null,"messages":null,"status":"AVAILABLE"}}],"vehicles":[]}
+    console.error('query', JSON.stringify(vendorData))
     return (
       <div>
         {
-          queryData && Object.keys(queryData).map((queryName, _) => {
-            const queryDatum = queryData[queryName]
+          vendorData && Object.keys(vendorData).map((queryName, _) => {
+            const queryDatum = vendorData[queryName]
             if (Array.isArray(queryDatum)) {
                 return (<div className={"form-group"}>
                     {queryDatum.map((data, i) => {
@@ -49,6 +47,5 @@ export default class VendorDataList extends React.Component {
 
 // Specifies the default values for props:
 VendorDataList.defaultProps = {
-  vendors: {},
-  data: {}
+  vendorData: {}
 };
