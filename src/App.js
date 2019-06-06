@@ -49,7 +49,7 @@ export default class App extends React.Component {
           return res.json()
       })
       .then(body => {
-        console.error('get body ', body)
+        console.error('get body ', JSON.stringify(body))
         that.setState({vendorData: body})
       })
   }
