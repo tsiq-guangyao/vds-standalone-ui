@@ -3,18 +3,15 @@ import ReactDOM from 'react-dom';
 import React, { Component }  from 'react';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import App from './App.js';
+import App from './App';
 
 const APIAddr = "http://localhost:8080/standalone/getVendorSchema"
 const options = {
-    method: 'GET',
-    cache: 'no-cache'
+    method: 'GET'
 }
 fetch(APIAddr, options)
-  .then(res => {
-      return res.json()
-  })
-  .then(body => {
+  .then((body: any) => {
+    console.log(body)
     ReactDOM.render(<App schema={body}/>, document.getElementById("root"));
   })
 // If you want your app to work offline and load faster, you can change

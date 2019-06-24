@@ -1,0 +1,1 @@
+declare module 'react-schema-viewer/lib/SchemaTable';

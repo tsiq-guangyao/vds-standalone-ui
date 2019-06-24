@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default class VendorData extends React.Component {
-  constructor(props) {
+export default class VendorData extends React.Component<VendorDataProps, VendorDataStates> {
+  constructor(props: any) {
       super(props)
   }
 
@@ -24,20 +24,20 @@ export default class VendorData extends React.Component {
     )
   }
 }
-function populateMessages(messages) {
+function populateMessages(messages: any) {
   if (!messages) {
     return
   }
   return (
     <ul>
       {
-        messages.map((message, i) => 
+        messages.map((message: any, i: number) => 
           (<li key={i}> {message} </li>))
       }
     </ul>
   )
 }
-function populateDataField(dataName, data) {
+function populateDataField(dataName: any, data: any) {
   if (data == null) {
     return
   }
@@ -70,7 +70,15 @@ function populateDataField(dataName, data) {
   }
 return(<tr>{dataName && <td>{dataName}:</td>}<td><label>{data !== null && data !== "" ? data.toString(): "N/A"}</label></td></tr>)
 }
+
+
 // Specifies the default values for props:
-VendorData.defaultProps = {
-  data: {}
-};
+type VendorDataProps = {
+  data: {
+    status: string,
+    messages: [],
+    data: {}
+  },
+  name: string,
+}
+type VendorDataStates = {}
