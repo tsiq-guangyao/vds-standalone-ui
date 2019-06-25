@@ -62,7 +62,7 @@ function populateDataField(dataName: any, data: any) {
         <td>
           <table className='table' style={{marginBottom: 0}}>
             <tbody>
-              {Object.keys(data).map(d => populateDataField(d, data[d]))}
+              {Object.keys(data).map(d => {if (d !== 'id') populateDataField(d, data[d])})}
             </tbody>
           </table>
         </td>

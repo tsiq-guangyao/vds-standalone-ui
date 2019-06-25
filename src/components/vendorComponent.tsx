@@ -24,7 +24,7 @@ export default class VendorComponent extends React.Component<VendorComponentProp
       fetch('http://localhost:8080/standalone/getVendorData', {
           method: 'POST',
           headers: {
-            'Content-Type': 'text/plain',
+            'Content-Type': 'text/plain'
           },
           body: JSON.stringify(data)
         })
