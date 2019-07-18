@@ -1,12 +1,7 @@
 import React from 'react';
 import VendorComponent from "./components/vendorComponent"
 
-type AppProps = {
-  schema: {
-    vendors: any, 
-    vendorRequest: any, 
-    vendorResponseSchema: any}
-  }
+type AppProps = { schema: any }
 type AppStates = {}
 
 export default class App extends React.Component<AppProps, AppStates> {

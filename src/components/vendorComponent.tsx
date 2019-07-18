@@ -21,7 +21,7 @@ export default class VendorComponent extends React.Component<VendorComponentProp
     function submit(form: any) {
       const data = form.formData
       console.error(JSON.stringify(data))
-      fetch('http://localhost:8080/standalone/getVendorData', {
+      fetch('https://vds-ea-white.iqos.twosigmaiq.com/standalone/getVendorData', {
           method: 'POST',
           headers: {
             'Content-Type': 'text/plain'
