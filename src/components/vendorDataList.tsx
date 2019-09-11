@@ -9,7 +9,6 @@ export default class VendorDataList extends React.Component<VendorDataListProps,
 
   render() {
     const vendorData = this.props.vendorData
-    console.error('query', JSON.stringify(vendorData))
     return (
       <div>
         {
@@ -22,13 +21,13 @@ export default class VendorDataList extends React.Component<VendorDataListProps,
                           <legend>{queryName} #{i}</legend>
                           {
                             Object.keys(data).map((name, _) => { 
-                              return <VendorData data={data[name]} name={name}/>
+                              if (name !== "id" && name !== "structures" && name !== "vin" && name !== "driverLicense")
+                                return <VendorData data={data[name]} name={name} key={name}/>
                             })
                           }
                         </div>)
                     })}
                 </div>)
-                
             }
             return (<div className={"form-group"}>
                 <legend>{queryName}:</legend>

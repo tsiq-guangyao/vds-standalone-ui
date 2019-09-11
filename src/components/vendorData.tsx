@@ -18,8 +18,8 @@ export default class VendorData extends React.Component<VendorDataProps, VendorD
           <h5 className={'col-sm-7'} >{name}</h5>
           <h5 className={'col-sm-4'} >{status}</h5>
         </div>
-        <div>{populateMessages(messages)}</div>
-        <table className='table'><tbody>{vendorData && populateDataField(null, vendorData)}</tbody></table>
+        {populateMessages(messages)}
+        <table className='table'><tbody>{populateDataField(null, vendorData)}</tbody></table>
       </div>
     )
   }
@@ -30,18 +30,13 @@ function populateMessages(messages: any) {
   }
   return (
     <ul>
-      {
-        messages.map((message: any, i: number) => 
-          (<li key={i}> {message} </li>))
-      }
+      {messages.map((message: any, i: number) => 
+          (<li key={i}> {message} </li>))}
     </ul>
   )
 }
-function populateDataField(dataName: any, data: any) {
-  if (data == null) {
-    return
-  }
 
+function populateDataField(dataName: any, data: any) {
   if (Array.isArray(data)) {
     return (
       <tr>
@@ -49,26 +44,29 @@ function populateDataField(dataName: any, data: any) {
         <td>
           <table className='table' style={{marginBottom: 0}}>
             <tbody>
-              {data.map((d, i) => populateDataField(null, d))}
+              {data.map((d) => populateDataField(null, d))}
             </tbody>
           </table>
         </td>
       </tr>)
   }
   else if (typeof data === 'object' && data !== null) {
+    let dataFields: Array<any> = []
+    Object.keys(data).map(d => {if (d !== 'id') dataFields.push(populateDataField(d, data[d])) })
     return(
       <tr>
         {dataName && <td> {dataName}: </td>}
         <td>
           <table className='table' style={{marginBottom: 0}}>
             <tbody>
-              {Object.keys(data).map(d => {if (d !== 'id') populateDataField(d, data[d])})}
+              { dataFields }
             </tbody>
           </table>
         </td>
       </tr>)
   }
-return(<tr>{dataName && <td>{dataName}:</td>}<td><label>{data !== null && data !== "" ? data.toString(): "N/A"}</label></td></tr>)
+  
+  return(<tr>{dataName && <td>{dataName}:</td>}<td><label>{(data !== undefined && data !== null && data !== "") ? data.toString(): "N/A"}</label></td></tr>)
 }
 
 
