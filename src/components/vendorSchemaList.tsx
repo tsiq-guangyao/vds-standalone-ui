@@ -5,6 +5,7 @@ export default class VendorSchemaList extends React.Component<VendorSchemaListPr
   render() {
     return (
       <div>{
+        /* eslint-disable */
         Object.keys(this.props.vendors).map((name: any, _: any) => {
           let vendor = this.props.vendors[name]
           let schemaName = vendor.schemaName
@@ -12,9 +13,6 @@ export default class VendorSchemaList extends React.Component<VendorSchemaListPr
             return (
               <VendorSchema schema={this.props.vendorResponseSchema[schemaName]} key={name}></VendorSchema>
             )
-          }
-          else {
-            return
           }
         })
       }

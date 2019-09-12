@@ -49,7 +49,8 @@ function populateDataField(dataName: any, data: any) {
   }
   else if (typeof data === 'object' && data !== null) {
     let dataFields: Array<any> = []
-    Object.keys(data).map(d => {if (d !== 'id') {return dataFields.push(populateDataField(d, data[d]))} else return})
+    /* eslint-disable */
+    Object.keys(data).map(d => {if (d !== 'id') dataFields.push(populateDataField(d, data[d])) })
     return(
       <tr>
         {dataName && <td> {dataName}: </td>}
