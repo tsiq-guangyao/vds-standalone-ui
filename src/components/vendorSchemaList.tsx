@@ -14,7 +14,7 @@ export default class VendorSchemaList extends React.Component<VendorSchemaListPr
           let schemaName = vendor.schemaName
           if (this.props.vendorResponseSchema && this.props.vendorResponseSchema[schemaName]) {
             return (
-              <VendorSchema schema={this.props.vendorResponseSchema[schemaName]}></VendorSchema>
+              <VendorSchema schema={this.props.vendorResponseSchema[schemaName]} key={name}></VendorSchema>
             )
           }
         })
