@@ -3,7 +3,6 @@ import React from 'react';
 import Form from "react-jsonschema-form";
 import VendorSchemaList from "./vendorSchemaList"
 import VendorDataList from "./vendorDataList"
-import VendorSchema from './vendorSchema';
 
 const log = (type: any) => console.log.bind(console, type)
 

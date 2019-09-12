@@ -23,6 +23,7 @@ export default class VendorDataList extends React.Component<VendorDataListProps,
                             Object.keys(data).map((name, _) => { 
                               if (name !== "id" && name !== "structures" && name !== "vin" && name !== "driverLicense")
                                 return <VendorData data={data[name]} name={name} key={name}/>
+                              else return
                             })
                           }
                         </div>)

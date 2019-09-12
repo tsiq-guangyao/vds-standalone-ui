@@ -2,10 +2,6 @@ import React from 'react';
 import VendorSchema from './vendorSchema'
 
 export default class VendorSchemaList extends React.Component<VendorSchemaListProps, VendorSchemaListStates> {
-  constructor(props: any) {
-      super(props)
-  }
-
   render() {
     return (
       <div>{
@@ -16,6 +12,9 @@ export default class VendorSchemaList extends React.Component<VendorSchemaListPr
             return (
               <VendorSchema schema={this.props.vendorResponseSchema[schemaName]} key={name}></VendorSchema>
             )
+          }
+          else {
+            return
           }
         })
       }
