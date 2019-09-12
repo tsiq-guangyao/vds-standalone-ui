@@ -18,7 +18,7 @@ before_deploy:
 
 deploy:
   - provider: script
-    script: auth-spa-tools/deploy_spa vds-standalone-ea ./ea
+    script: uth-spa-tools/deploy_spa vds-standalone-ea ${TRAVIS_BUILD_DIR}/build
     skip_cleanup: true
     on:
       branch: master
