@@ -29,7 +29,7 @@ export default class VendorSchema extends React.Component<VendorSchemaProps, Ven
         <div className="row">
           <h4 className='col-sm-5'>{this.props.schema && this.props.schema.title}</h4>
           <h4 className='col-sm-4' >
-            <a onClick={this.toggleSchema}>{this.state.showSchema ? "Hide Schema" : "Show Schema" }</a>
+            <button onClick={this.toggleSchema}>{this.state.showSchema ? "Hide Schema" : "Show Schema" }</button>
           </h4>
         </div>
         {this.state.showSchema ? 

@@ -6,7 +6,7 @@ export default class VendorDataList extends React.Component<VendorDataListProps,
       super(props)
       this.state = {}
   }
-
+  /* eslint-disable */
   render() {
     const vendorData = this.props.vendorData
     return (

@@ -1,9 +1,6 @@
 import React from 'react';
 
 export default class VendorData extends React.Component<VendorDataProps, VendorDataStates> {
-  constructor(props: any) {
-      super(props)
-  }
 
   render() {
     let data = this.props.data
@@ -52,6 +49,7 @@ function populateDataField(dataName: any, data: any) {
   }
   else if (typeof data === 'object' && data !== null) {
     let dataFields: Array<any> = []
+    /* eslint-disable */
     Object.keys(data).map(d => {if (d !== 'id') dataFields.push(populateDataField(d, data[d])) })
     return(
       <tr>

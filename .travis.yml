@@ -1,0 +1,24 @@
+dist: trusty
+
+language: node_js
+
+node_js:
+  - "8"
+
+install:
+  - git clone --single-branch --branch master --depth 1 https://github.com/tsiq/auth-spa-tools.git
+  - npm i
+
+script:
+  - npm i
+  - npm run build
+
+before_deploy:
+  - pip install --user awscli
+
+deploy:
+  - provider: script
+    script: uth-spa-tools/deploy_spa vds-standalone-ea ${TRAVIS_BUILD_DIR}/build
+    skip_cleanup: true
+    on:
+      branch: master

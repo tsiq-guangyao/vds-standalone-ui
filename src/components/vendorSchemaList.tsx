@@ -2,13 +2,10 @@ import React from 'react';
 import VendorSchema from './vendorSchema'
 
 export default class VendorSchemaList extends React.Component<VendorSchemaListProps, VendorSchemaListStates> {
-  constructor(props: any) {
-      super(props)
-  }
-
   render() {
     return (
       <div>{
+        /* eslint-disable */
         Object.keys(this.props.vendors).map((name: any, _: any) => {
           let vendor = this.props.vendors[name]
           let schemaName = vendor.schemaName
