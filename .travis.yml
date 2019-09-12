@@ -1,0 +1,25 @@
+dist: trusty
+
+language: node_js
+
+node_js:
+  - "8"
+
+install:
+  - git clone --single-branch --branch master --depth 1 https://github.com/tsiq/auth-spa-tools.git
+  - npm i
+
+script:
+  - npm i
+  - npm run build
+
+before_deploy:
+  - pip install --user awscli
+
+deploy:
+  - provider: script
+    script: 
+      - chmod +x auth-spa-tools/deploy_spa && auth-spa-tools/deploy_spa service-catalog ${TRAVIS_BUILD_DIR}/app/build
+    skip_cleanup: true
+    on:
+      branch: master
