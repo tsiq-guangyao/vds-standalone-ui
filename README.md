@@ -1,1 +1,1 @@
-Standalone UI of VDS vendor services.
+UI of VDS vendor services.
