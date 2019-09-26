@@ -5,7 +5,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
 
-const APIAddr = "https://vds-ea-white.iqos.twosigmaiq.com//standalone/getVendorSchema"
+const APIAddr = "https://vds-ea-white.iqos.twosigmaiq.com/standalone/getVendorSchema"
 const options = {
     method: 'GET'
 }

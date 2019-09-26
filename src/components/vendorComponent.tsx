@@ -19,12 +19,19 @@ export default class VendorComponent extends React.Component<VendorComponentProp
     var that = this
     function submit(form: any) {
       const data = form.formData
-      fetch('https://vds-ea-white.iqos.twosigmaiq.com/standalone/getVendorData', {
+      console.log(data)
+      fetch('https://lambdas-internal-ea-white.iqos.twosigmaiq.com/tenants/917/headers?validityMs=7200000',{
+        method: 'POST'
+      })
+      .then(res => res.json())
+      .then(res => {
+        fetch('https://vds-ea-white.iqos.twosigmaiq.com/standalone/getVendorData', {
           method: 'POST',
+          body: JSON.stringify(data),
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'X-TSIQ-Tenant-Encoded': res.headers["X-TSIQ-Tenant-Encoded"]
           },
-          body: JSON.stringify(data)
         })
         .then(res => {
             return res.json()
@@ -32,6 +39,8 @@ export default class VendorComponent extends React.Component<VendorComponentProp
         .then(body => {
           that.setState({vendorData: body})
         })
+      }
+      )
     }
     return (<div className={'col-sm-12'}>
     <div className={'col-sm-4'} style={{paddingBottom: '50px'}}>
